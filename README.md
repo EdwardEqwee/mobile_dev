@@ -40,12 +40,11 @@
  ┣ 📂 lab_11/        # Анимация в Flutter
  ┣ 📂 lab_12/        # Интеграция с внешними сервисами (Firebase, Auth)
  ┣ 📜 README.md      # Описание проекта
- ┣ 📜 .gitignore     # Исключенные файлы из Git
  ┗ 📂 assets/        # Медиафайлы (изображения, иконки, GIF)
 </pre>
 <h2>📌 Как запустить проект</h2>
 <ol>
-  <li><strong>Склонировать репозиторий:</strong> <pre>git clone https://github.com/your-username/my_flutter_app.git</pre></li>
+  <li><strong>Склонировать репозиторий:</strong> <pre>git clone https://github.com/EdwardEqwee/mobile_dev.git</pre></li>
   <li><strong>Установить зависимости:</strong> <pre>flutter pub get</pre></li>
   <li><strong>Запустить приложение:</strong> <pre>flutter run</pre></li>
 </ol>
