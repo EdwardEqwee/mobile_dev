@@ -1,16 +1,34 @@
 # lab_03
 
-A new Flutter project.
+Этот проект является лабораторной работой №3 по разработке мобильных приложений на **Flutter**. Приложение представляет собой **инкрементный счётчик**, где пользователь может **увеличивать, уменьшать и сбрасывать значение**.
 
-## Getting Started
+### **Функциональность**
+Приложение включает в себя следующие функции:
+- **Увеличение значения (`+`)** – кнопка зелёного цвета.
+- **Уменьшение значения (`-`)** – кнопка красного цвета.
+- **Сброс счётчика (`Сбросить`)** – кнопка серого цвета.
+- **Адаптивный интерфейс** – все элементы центрированы и удобны в использовании.
+- **Использование Material Design** – оформление элементов в соответствии с гайдлайнами Flutter.
 
-This project is a starting point for a Flutter application.
+### **Структура проекта**
+- `MyApp` – главный виджет, запускающий приложение.
+- `MyHomePage` – основной экран со счётчиком.
+- `_MyHomePageState` – логика управления значением счётчика (увеличение, уменьшение, сброс).
 
-A few resources to get you started if this is your first Flutter project:
+### **Как запустить проект**
+1. Убедитесь, что у вас установлен **Flutter**.
+2. Клонируйте репозиторий:
+   ```sh
+   git clone https://github.com/EdwardEqwee/mobile_dev
+   cd mobile_dev/lab_03
+   ```
+3. Запустите проект:
+   ```sh
+   flutter run
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### **Полезные ссылки**
+- [Официальная документация Flutter](https://docs.flutter.dev/)
+- [Учебник: Создание первого приложения](https://docs.flutter.dev/get-started/codelab)
+- [Руководство по виджетам Flutter](https://docs.flutter.dev/ui/widgets)
+- [Примеры кода и Cookbook](https://docs.flutter.dev/cookbook)
