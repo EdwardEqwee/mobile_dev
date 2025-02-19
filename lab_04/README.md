@@ -1,16 +1,42 @@
 # lab_04
 
-A new Flutter project.
+Этот проект является лабораторной работой №4 по разработке мобильных приложений на **Flutter**. Приложение представляет собой **информационный экран о Кубанском государственном аграрном университете (КубГАУ)**, содержащий сведения о вузе, контактную информацию и основные функции для взаимодействия.
 
-## Getting Started
+### **Функциональность**
+Приложение включает в себя следующие возможности:
+- **Просмотр информации о КубГАУ** – название, адрес, подробное описание университета.
+- **Карта с маршрутом** – открытие Яндекс.Карт с указанием местоположения вуза.
+- **Позвонить в университет** – возможность совершить звонок в приёмную комиссию или другие отделы.
+- **Отправка email** – удобная кнопка для написания письма с возможностью выбора почтового клиента.
+- **Поделиться информацией** – отправка ссылки на описание университета и его местоположение через мессенджеры и соцсети.
+- **Сохранение в "избранное"** – кнопка лайка, позволяющая отметить университет.
+- **Переход на официальный сайт КубГАУ** – ссылка для открытия веб-страницы в браузере.
 
-This project is a starting point for a Flutter application.
+### **Структура проекта**
+- `MyApp` – главный виджет, отвечающий за запуск приложения.
+- `HomeScreen` – основной экран с информацией.
+- `_HomeScreenState` – логика управления состояниями, обработка событий (нажатие на кнопки, лайк, открытие ссылок).
+- `url_launcher` – пакет для открытия внешних ссылок (карта, телефон, email, сайт).
+- `share_plus` – пакет для удобного обмена информацией.
 
-A few resources to get you started if this is your first Flutter project:
+### **Как запустить проект**
+1. Убедитесь, что у вас установлен **Flutter**.
+2. Клонируйте репозиторий:
+   ```sh
+   git clone https://github.com/EdwardEqwee/mobile_dev
+   cd mobile_dev/lab_04
+   ```
+3. Установите зависимости:
+   ```sh
+   flutter pub get
+   ```
+4. Запустите проект:
+   ```sh
+   flutter run
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### **Полезные ссылки**
+- [Документация Flutter](https://docs.flutter.dev/)
+- [Учебник: Создание первого приложения](https://docs.flutter.dev/get-started/codelab)
+- [Руководство по виджетам Flutter](https://docs.flutter.dev/ui/widgets)
+- [Примеры кода и Cookbook](https://docs.flutter.dev/cookbook)
