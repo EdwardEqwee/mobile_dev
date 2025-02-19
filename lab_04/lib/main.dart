@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 16),
 
-            /// Заголовок с названием и рейтингом
+            /// Заголовок с названием
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
