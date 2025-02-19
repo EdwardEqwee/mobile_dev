@@ -33,33 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('КубГАУ - Детали'),
-        actions: [
-          /// Кнопка "лайк" с анимацией
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                isLiked = !isLiked;
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 300),
-                transitionBuilder: (child, animation) {
-                  return ScaleTransition(scale: animation, child: child);
-                },
-                child: Icon(
-                  isLiked ? Icons.favorite : Icons.favorite_border,
-                  key: ValueKey<bool>(isLiked),
-                  color: isLiked ? Colors.red : Colors.grey,
-                  size: 30,
-                ),
-              ),
-            ),
-          ),
-        ],
+        backgroundColor: Colors.green,
       ),
-      /// Основное содержимое экрана
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,36 +55,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Кубанский государственный аграрный университет',
+                    'Кубанский государственный аграрный университет имени И.Т.Трубилина',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    'г. Краснодар, ул. Калинина, 13',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
                   SizedBox(height: 8),
+
+                  /// Блок с адресом и лайком
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.star, color: Colors.orange, size: 20),
-                      SizedBox(width: 5),
-                      Text('4.8', style: TextStyle(fontSize: 16)),
+                      Text(
+                        'г. Краснодар, ул. Калинина, 13',
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isLiked = !isLiked;
+                          });
+                        },
+                        child: AnimatedSwitcher(
+                          duration: Duration(milliseconds: 300),
+                          transitionBuilder: (child, animation) {
+                            return ScaleTransition(scale: animation, child: child);
+                          },
+                          child: Icon(
+                            isLiked ? Icons.favorite : Icons.favorite_border,
+                            key: ValueKey<bool>(isLiked),
+                            color: isLiked ? Colors.red : Colors.grey,
+                            size: 30,
+                          ),
+                        ),
+                      ),
                     ],
+                  ),
+                  SizedBox(height: 20),
+
+                  /// Кнопки действий
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildActionButton(Icons.phone, 'Позвонить', () => _makeCall("+78612215942")),
+                      _buildActionButton(Icons.map, 'Маршрут', _openMap),
+                      _buildActionButton(Icons.share, 'Поделиться', _sharePlace),
+                      _buildActionButton(Icons.email, 'Почта', _sendEmail),
+                    ],
+                  ),
+
+                  SizedBox(height: 20),
+                  Text(
+                    'КубГАУ — одно из ведущих высших учебных заведений России в области аграрного образования. Основанный в 1922 году, университет имеет богатую историю и традиции. За время существования КубГАУ подготовил более 140 тысяч специалистов.\n\n'
+                        'В университете 17 факультетов, около 18 тысяч студентов. Направления подготовки включают агрономию, агроинженерию, ветеринарию, технологии переработки, юриспруденцию и многое другое.\n\n'
+                        'КубГАУ активно занимается научными исследованиями и внедрением инноваций. В университете работают два НИИ: биотехнологии и сертификации пищевой продукции, а также прикладной и экспериментальной экологии.\n\n'
+                        'Кампус включает 22 учебных корпуса, 20 общежитий, библиотеку, спортивный комплекс, ботанический сад и многое другое. КубГАУ активно участвует в международных проектах, обмениваясь опытом с зарубежными вузами и научными центрами.\n\n'
+                        'Таким образом, Кубанский государственный аграрный университет сочетает богатые традиции, современные образовательные и научные подходы, активно внедряя инновации.',
+                    style: TextStyle(fontSize: 16),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 20),
 
-            /// Кнопки действий
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildActionButton(Icons.phone, 'Позвонить', () => _makeCall("+78612215942")),
-                _buildActionButton(Icons.map, 'Маршрут', _openMap),
-                _buildActionButton(Icons.share, 'Поделиться', _sharePlace),
-                _buildActionButton(Icons.email, 'Почта', _sendEmail),
-              ],
-            ),
             SizedBox(height: 20),
 
             /// Контакты
@@ -121,23 +126,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             _buildContactInfo(Icons.phone, 'Приемная ректора', '+7 (861) 221-59-42', 'tel:+78612215942'),
-            _buildContactInfo(Icons.phone, 'Факс', '+7 (861) 221-58-85', 'tel:+78612215885'),
+            _buildContactInfo(Icons.fax_sharp, 'Факс', '+7 (861) 221-58-85', 'tel:+78612215885'),
             _buildContactInfo(Icons.phone, 'Приемная комиссия', '+7 (861) 221-58-18', 'tel:+78612215818'),
             _buildContactInfo(Icons.email, 'E-mail', 'mail@kubsau.ru', 'mailto:mail@kubsau.ru'),
 
-            /// Кнопка для перехода на сайт
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: ElevatedButton.icon(
-                onPressed: _openWebsite,
-                icon: Icon(Icons.public),
-                label: Text('Перейти на сайт КубГАУ'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 12),
-                ),
-              ),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: ElevatedButton.icon(
+            onPressed: _openWebsite,
+
+            label: Text('Перейти на сайт КубГАУ'),
+            style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            ),
+            ),
             ),
           ],
         ),
@@ -145,33 +149,29 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// 📞 Открытие экрана вызова с указанным номером
+  /// Открытие экрана вызова с указанным номером
   void _makeCall(String phoneNumber) async {
     final Uri callUri = Uri.parse("tel:$phoneNumber");
     if (await canLaunchUrl(callUri)) {
       await launchUrl(callUri);
-    } else {
-      print("Ошибка: не удалось открыть телефонный вызов.");
     }
   }
 
-  /// 📍 Открытие Google Maps с местоположением КубГАУ
+  /// Открытие Яндекс.Карт с местоположением КубГАУ
   void _openMap() async {
-    Uri mapUri = Uri.parse("https://maps.app.goo.gl/GE7G8Rzk888b6Cz1A");
+    Uri mapUri = Uri.parse("https://yandex.ru/maps/-/CHuIIOoJ");
     if (await canLaunchUrl(mapUri)) {
       await launchUrl(mapUri, mode: LaunchMode.externalApplication);
-    } else {
-      print("Ошибка: не удалось открыть Google Maps.");
     }
   }
 
-  /// 📤 Функция для кнопки "Поделиться"
+  /// Функция для кнопки "Поделиться"
   void _sharePlace() {
-    String message = "🎓 КубГАУ - один из ведущих аграрных университетов России! 📍 Посмотрите на карту: https://maps.app.goo.gl/GE7G8Rzk888b6Cz1A";
+    String message = "🎓 КубГАУ - один из ведущих аграрных университетов России! 📍 Посмотрите на карту: https://yandex.ru/maps/-/CHuIIOoJ";
     Share.share(message);
   }
 
-  /// ✉️ Функция для отправки письма с выбором почтового клиента
+  /// Функция для отправки письма
   void _sendEmail() async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
@@ -181,37 +181,23 @@ class _HomeScreenState extends State<HomeScreen> {
         'body': 'Здравствуйте! Хотел бы узнать подробнее о программах обучения.'
       },
     );
-
     if (await canLaunchUrl(emailUri)) {
       await launchUrl(emailUri);
-    } else {
-      print("Ошибка: не удалось открыть почтовый клиент.");
-    }
-  }
-
-  /// 🌍 Открытие сайта КубГАУ
-  void _openWebsite() async {
-    Uri websiteUri = Uri.parse("https://www.kubsau.ru/");
-    if (await canLaunchUrl(websiteUri)) {
-      await launchUrl(websiteUri);
     }
   }
 
   /// Виджет для отображения контактной информации
   Widget _buildContactInfo(IconData icon, String title, String subtitle, String link) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-      child: ListTile(
-        leading: Icon(icon, color: Colors.green),
-        title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(subtitle, style: TextStyle(color: Colors.blue)),
-        onTap: () async {
-          Uri uri = Uri.parse(link);
-          if (await canLaunchUrl(uri)) {
-            await launchUrl(uri);
-          }
-        },
-      ),
+    return ListTile(
+      leading: Icon(icon, color: Colors.green),
+      title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+      subtitle: Text(subtitle, style: TextStyle(color: Colors.blue)),
+      onTap: () async {
+        Uri uri = Uri.parse(link);
+        if (await canLaunchUrl(uri)) {
+          await launchUrl(uri);
+        }
+      },
     );
   }
 
@@ -227,5 +213,13 @@ class _HomeScreenState extends State<HomeScreen> {
         Text(label, style: TextStyle(fontSize: 14, color: Colors.green)),
       ],
     );
+  }
+
+  /// 🌍 Открытие сайта КубГАУ
+  void _openWebsite() async {
+    Uri websiteUri = Uri.parse("https://www.kubsau.ru/");
+    if (await canLaunchUrl(websiteUri)) {
+      await launchUrl(websiteUri);
+    }
   }
 }
