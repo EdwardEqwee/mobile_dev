@@ -7,7 +7,8 @@ plugins {
 
 android {
     namespace = "com.example.lab_04"
-    compileSdk = flutter.compileSdkVersion
+    //compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     //ndkVersion = flutter.ndkVersion
     ndkVersion = "27.0.12077973"
 
@@ -38,8 +39,12 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+    dependencies {
+        implementation("com.google.android.material:material:1.9.0")
+    }
 }
 
 flutter {
     source = "../.."
 }
+
