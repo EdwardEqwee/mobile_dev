@@ -34,6 +34,6 @@
         android:theme="@style/AppTheme"
         android:allowBackup="true">
 
-        <!-- Сюда больше не добавляем <queries> -->
+
     </application>
 </manifest>
