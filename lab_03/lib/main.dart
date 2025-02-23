@@ -1,54 +1,58 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // Импортируем библиотеку Flutter для работы с UI
 
+// Главная функция приложения, точка входа
 void main() {
-  runApp(MyApp());
+  runApp(MyApp()); // Запускает приложение, используя класс MyApp
 }
 
 /// Главное виджет-приложение.
-/// Содержит MaterialApp, тему и домашнюю страницу.
+/// Создаёт MaterialApp с заданной темой и главной страницей.
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Инкремент', /// Измененное название приложения
+      debugShowCheckedModeBanner: false, // Отключаем отладочный баннер
+      title: 'Инкремент', // Название приложения
       theme: ThemeData(
-        primarySwatch: Colors.yellow, /// Выбранная цветовая тема
+        primarySwatch: Colors.yellow, // Устанавливаем основную цветовую тему (жёлтый)
       ),
-      home: MyHomePage(),
+      home: MyHomePage(), // Устанавливаем главную страницу
     );
   }
 }
 
-/// Состояние главной страницы приложения
+/// Главный экран приложения.
+/// Является StatefulWidget, так как содержит изменяемые данные.
 class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(); // Создаёт состояние экрана
 }
 
-/// Основной класс состояния.
-/// Хранит счётчик и обрабатывает +, -  и сброс.
+/// Класс состояния главной страницы.
+/// Здесь хранятся переменные и методы для управления состоянием.
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter = 0; // Переменная-счётчик
 
-  /// Увеличивает значение счётчика на 1
+  /// Метод увеличивает значение счётчика на 1
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counter++; // Увеличиваем значение переменной
     });
   }
 
-  /// Уменьшает значение счётчика на 1
+  /// Метод уменьшает значение счётчика на 1
   void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
+    if (_counter > 0) {
+      setState(() {
+        _counter--; // Уменьшаем значение переменной
+      });
+    }
   }
 
-  /// Сбрасывает значение счётчика на 0
+  /// Метод сбрасывает счётчик в 0
   void _resetCounter() {
     setState(() {
-      _counter = 0;
+      _counter = 0; // Устанавливаем значение 0
     });
   }
 
@@ -57,64 +61,66 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       /// Верхняя панель приложения
       appBar: AppBar(
-        title: Text('Инкремент'), /// Измененный заголовок
-        backgroundColor: Colors.yellow, /// Цвет верхней панели
+        title: Text('Инкремент'), // Заголовок в AppBar
+        backgroundColor: Colors.yellow, // Устанавливаем цвет AppBar
       ),
       /// Основная часть экрана
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center, // Выравниваем по центру
           children: <Widget>[
-            /// Надпись перед счётчиком
+            /// Текст перед счётчиком
             Text(
               'Значение инкремента:',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20), // Устанавливаем размер текста
             ),
-            /// Текущее значение счётчика
+            /// Отображение текущего значения счётчика
             Text(
-              '$_counter',
+              '$_counter', // Выводим значение переменной _counter
               style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
-            /// Горизонтальный ряд с кнопками "-" и "+"
+            SizedBox(height: 20), // Добавляем отступ
+
+            /// Горизонтальный ряд кнопок "-" и "+"
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 /// Кнопка уменьшения счётчика
                 ElevatedButton(
-                  onPressed: _decrementCounter,
+                  onPressed: _decrementCounter, // Вызываем _decrementCounter при нажатии
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red, /// Красная кнопка
+                    backgroundColor: Colors.red, // Устанавливаем красный цвет
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                    /// Указываем отсутствие закруглений (квадратные углы)
+                    /// Делаем кнопки квадратными
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero,
                     ),
                   ),
-                  child: Icon(Icons.remove, size: 30, color: Colors.white),
+                  child: Icon(Icons.remove, size: 30, color: Colors.white), // Иконка "-"
                 ),
-                SizedBox(width: 20),
+                SizedBox(width: 20), // Отступ между кнопками
+
                 /// Кнопка увеличения счётчика
                 ElevatedButton(
-                  onPressed: _incrementCounter,
+                  onPressed: _incrementCounter, // Вызываем _incrementCounter при нажатии
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green, /// Зелёная кнопка
+                    backgroundColor: Colors.green, // Устанавливаем зелёный цвет
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                    /// Тоже делаем углы квадратными
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero,
                     ),
                   ),
-                  child: Icon(Icons.add, size: 30, color: Colors.white),
+                  child: Icon(Icons.add, size: 30, color: Colors.white), // Иконка "+"
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10), // Отступ перед кнопкой сброса
+
             /// Кнопка сброса счётчика
             TextButton(
-              onPressed: _resetCounter,
+              onPressed: _resetCounter, // Вызываем _resetCounter при нажатии
               child: Text(
-                'Сбросить',
+                'Сбросить', // Текст кнопки
                 style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
             ),
