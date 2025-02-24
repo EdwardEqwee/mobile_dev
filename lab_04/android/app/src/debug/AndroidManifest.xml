@@ -1,0 +1,39 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.lab_04">
+
+    <!-- Разрешение на доступ в интернет -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- Разрешение на совершение звонков -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <!-- Разрешаем открытие звонков, email-клиентов и карт -->
+    <queries>
+        <!-- Телефонный вызов -->
+        <intent>
+            <action android:name="android.intent.action.DIAL"/>
+            <data android:scheme="tel"/>
+        </intent>
+
+        <!-- Почтовые клиенты -->
+        <intent>
+            <action android:name="android.intent.action.SEND"/>
+            <data android:mimeType="*/*"/>
+        </intent>
+
+        <!-- Google Maps -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="geo"/>
+        </intent>
+    </queries>
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/AppTheme"
+        android:allowBackup="true">
+
+
+    </application>
+</manifest>
