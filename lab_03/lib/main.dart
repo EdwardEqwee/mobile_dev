@@ -5,6 +5,8 @@ void main() {
   runApp(MyApp()); // Запускает приложение, используя класс MyApp
 }
 
+
+
 /// Главное виджет-приложение.
 /// Создаёт MaterialApp с заданной темой и главной страницей.
 class MyApp extends StatelessWidget {
